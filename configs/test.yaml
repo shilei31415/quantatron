@@ -1,0 +1,45 @@
+TS_TOKEN: "************************************"
+SEED: 2024
+TRAIN_DATASET:
+  NAME: "TSDailyDataset"
+  START_DATE: "2015-01-05"
+  END_DATE: "2021-12-30"
+  MODE: "online"
+#  window
+#  DIR: "E:\\stock_dataset"
+#  ubuntu
+  DIR: "/home/shilei/stock_dataset"
+  STOCK_CODES: ("000001.SZ", "600000.SH")
+  LENGTH: 10
+
+TEST_DATASET:
+  NAME: "TSDailyDataset"
+  START_DATE: "2022-01-05"
+  END_DATE: "2022-12-30"
+  MODE: "online"
+#  window
+#  DIR: "E:\\stock_dataset"
+#  ubuntu
+  DIR: "/home/shilei/stock_dataset"
+  STOCK_CODES: ("000001.SZ", "600000.SH")
+  LENGTH: 10
+
+MODEL:
+  META_ARCH: "ConvFC"
+  LENGTH: 10
+  COLUMN: 9
+  HIDDEN_DIM: 512
+  LAYER: 5
+  OUTPUT_DIM: 4
+SOLVER:
+  DATA_PER_BATCH: 128
+  BASE_LR: 1e-7  # Note that RetinaNet uses a different default learning rate
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
+  CLIP_GRADIENTS:
+    CLIP_VALUE: 5.0
+    CLIP_TYPE: "norm"
+  LOG_PERIOD: 100
+TEST:
+  EVAL_PERIOD: 5000
+
